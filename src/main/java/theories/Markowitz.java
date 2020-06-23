@@ -31,4 +31,9 @@ public class Markowitz implements InvestmentInterface {
 
         return response.body();
     }
+
+    public void calculateReturns() {
+
+    }
+
 }
