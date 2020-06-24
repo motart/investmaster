@@ -1,11 +1,9 @@
 import models.Ticker;
 import theories.Markowitz;
-import java.io.IOException;
+
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class SmartInvestor {
