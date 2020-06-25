@@ -97,28 +97,10 @@ public class Markowitz extends InvestmentBase {
     }
 
 
-    public Double getStandardDeviation( TreeMap<Date, Double> returns ) {
-        double [] testData = new double[ returns.size() ];
-        for (int i=0; i < returns.size(); i++ ) {
-            testData[i] = (double) returns.values().toArray()[i];
-        }
-        DescriptiveStatistics statistics = new DescriptiveStatistics( testData );
-        return statistics.getStandardDeviation();
-    }
 
-    public Double getVariance( TreeMap<Date, Double> returns ) {
-        double [] testData = new double[ returns.size() ];
-        for (int i=0; i < returns.size(); i++ ) {
-            testData[i] = (double) returns.values().toArray()[i];
-        }
-        DescriptiveStatistics statistics = new DescriptiveStatistics( testData );
-        return statistics.getVariance();
-    }
 
-    public Double getAverageReturn( TreeMap<Date, Float> returns ) {
-        Double result;
-        result = returns.values().stream().mapToDouble(num -> Double.valueOf(num)).average().orElse(0);
-        return result;
-    }
+
+
+
 
 }
