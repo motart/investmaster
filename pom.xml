@@ -49,4 +49,11 @@
             <version>1.4.194</version>
         </dependency>
     </dependencies>
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Internal repo</name>
+            <url>file://c/Users/Rachid.Abadli/IdeaProjects/investmaster/releases</url>
+        </repository>
+    </distributionManagement>
 </project>

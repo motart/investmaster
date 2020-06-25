@@ -1,3 +1,4 @@
+import common.MathHelper;
 import models.Ticker;
 import theories.Markowitz;
 
@@ -26,6 +27,6 @@ public class SmartInvestor {
 
         DecimalFormat format = new DecimalFormat("###.##############");
         // System.out.println( format.format( testRun.getAverageReturn(testRun.calculateReturns(testRun.getPrices( testRun.getData() )))));
-        System.out.println( format.format( testRun.getStandardDeviation(testData)));
+        System.out.println( format.format( MathHelper.calculateStandardDeviation(testData)));
     }
 }
