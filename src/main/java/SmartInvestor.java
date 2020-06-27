@@ -1,32 +1,32 @@
+import common.DataSizeMismatchException;
 import common.MathHelper;
+import common.TooFewStocksException;
 import models.Ticker;
+import org.apache.commons.math3.linear.MatrixUtils;
+import org.apache.commons.math3.linear.RealMatrix;
 import theories.Markowitz;
-
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TreeMap;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.*;
 
 public class SmartInvestor {
-    public static void main( String[] args ) {
-        Ticker ibm = new Ticker("IBM");
+    public static void main( String[] args ) throws TooFewStocksException, IOException, ParseException {
+        Ticker ibm = null;
+        Ticker apple = null;
+        Ticker amazon = null;
+        try {
+            ibm = new Ticker("IBM");
+            apple = new Ticker("AAPL");
+            amazon = new Ticker("AMZN");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         Markowitz testRun = new Markowitz( ibm );
-        TreeMap<Date, Double> testData = new TreeMap<>();
+        testRun.addTicker( apple );
+        testRun.addTicker( amazon );
+        testRun.run();
+        System.out.println("Done!!");
 
-        Calendar calendar = Calendar.getInstance();
-
-        calendar.add(Calendar.DAY_OF_MONTH, 1);
-        testData.put(calendar.getTime(), (double) 7);
-
-        calendar.add(Calendar.DAY_OF_MONTH, 2);
-        testData.put(calendar.getTime(), (double) 2);
-
-
-        calendar.add(Calendar.DAY_OF_MONTH, 3);
-        testData.put(calendar.getTime(), (double) 0);
-
-        DecimalFormat format = new DecimalFormat("###.##############");
-        // System.out.println( format.format( testRun.getAverageReturn(testRun.calculateReturns(testRun.getPrices( testRun.getData() )))));
-        System.out.println( format.format( MathHelper.calculateStandardDeviation(testData)));
     }
 }
