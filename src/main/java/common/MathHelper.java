@@ -1,13 +1,10 @@
 package common;
 
 import org.apache.commons.math3.linear.RealMatrix;
-import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.stat.correlation.Covariance;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
-import org.apache.commons.math3.stat.descriptive.moment.Variance;
-
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -28,6 +25,14 @@ public class MathHelper {
         }
         DescriptiveStatistics statistics = new DescriptiveStatistics( testData );
         return statistics.getVariance();
+    }
+
+    public static double[] convertMapToArray(Map<String, Double> source) {
+        double[] result = new double[source.size()];
+        for (int i=0; i < source.size(); i++ ) {
+            result[i] = (double) source.values().toArray()[i];
+        }
+        return result;
     }
 
     public static double[] convertTreeMapToArray(TreeMap<Date, Double> source) {
@@ -55,6 +60,13 @@ public class MathHelper {
         return processedData;
     }
 
+    public static RealMatrix calculateCovariance (RealMatrix data ) {
+        return new Covariance( data ).getCovarianceMatrix();
+    }
+
+    public static double calculateSquareRoot (Double value ) {
+        return Math.sqrt( value );
+    }
 
     public static Double calculateStandardDeviation( TreeMap<Date, Double> returns ) {
         double [] testData = new double[ returns.size() ];
@@ -79,14 +91,7 @@ public class MathHelper {
 
     }
 
-    public static RealMatrix calculateCovariance (RealMatrix data ) {
-        return new Covariance( data ).getCovarianceMatrix();
-    }
-
-
     public static RealMatrix calculateCorrelation ( RealMatrix data ) {
         return new PearsonsCorrelation().computeCorrelationMatrix(data);
     }
-
-    //new PearsonsCorrelation().computeCorrelationMatrix(data)
 }

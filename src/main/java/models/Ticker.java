@@ -21,6 +21,10 @@ public class Ticker {
     private Double standardDeviation;
     private TreeMap<Date, Double> pricesMap;
     private TreeMap<Date, Double> returnsMap;
+    private Date startDate = new GregorianCalendar(2019, Calendar.JULY, 01).getTime();;
+    private Date endDate = new GregorianCalendar(2020, Calendar.JULY, 01).getTime();;
+    // private Date endDate = new Date(System.currentTimeMillis());
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public Ticker( String symbol) throws IOException, ParseException, InterruptedException {
         this.setSymbol(symbol);
@@ -37,7 +41,7 @@ public class Ticker {
 
     private String getData( String symbol ) throws IOException, InterruptedException {
             HttpResponse<String> response;
-            String path = "https://www.alphavantage.co/" + WHERE + FREQUENCY_IS + "TIME_SERIES_WEEKLY"
+            String path = "https://www.alphavantage.co/" + WHERE + FREQUENCY_IS + "TIME_SERIES_MONTHLY"
                     + AND + TICKER_IS + symbol + AND + "apikey=CSZNI68WV3F09QQZ";
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -46,7 +50,6 @@ public class Ticker {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response != null) {
                 return response.body();
-
             }
             return "";
     }
@@ -61,7 +64,11 @@ public class Ticker {
         Iterator<Map.Entry<String, JsonNode>> datedPrices = data.fields();
         while (datedPrices.hasNext()) {
             Map.Entry<String, JsonNode> test = datedPrices.next();
-            processedPrices.put(new SimpleDateFormat("yyyy-MM-dd").parse(test.getKey()) , test.getValue().get("4. close").asDouble());
+            Date entryDate = dateFormat.parse(test.getKey());
+            // Check the date here
+            if (entryDate.compareTo( startDate ) >= 0 && entryDate.compareTo(endDate) <= 0 ) {
+                processedPrices.put(entryDate , test.getValue().get("4. close").asDouble());
+            }
         }
         return new TreeMap<>(processedPrices);
     }
