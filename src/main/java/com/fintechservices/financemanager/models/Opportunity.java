@@ -8,4 +8,8 @@ public class Opportunity {
     public double portfolioReturn;
     public double portfolioVariance;
     public double portfolioStDeviation;
+
+    public String toString() {
+        return "{Sharpe: " + sharpeRatio +",\n"+"weights: "+weights+"}";
+    }
 }

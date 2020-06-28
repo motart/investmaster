@@ -45,7 +45,7 @@ public class Markowitz extends InvestmentBase {
         Opportunity optimalReturnPortfolio = getMaxSharpe();
     }
 
-    private Opportunity getMaxSharpe() {
+    public Opportunity getMaxSharpe() {
         Opportunity result = new Opportunity();
         Double maxSharpe = 0.0;
         for ( Opportunity opportunity: opportunitySet ) {

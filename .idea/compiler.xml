@@ -13,4 +13,9 @@
       <module name="Invest Master" target="11" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Invest Master" options="-parameters" />
+    </option>
+  </component>
 </project>
