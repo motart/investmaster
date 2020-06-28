@@ -1,10 +1,11 @@
-package common;
+package com.fintechservices.financemanager.common;
 
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.stat.correlation.Covariance;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;

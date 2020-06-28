@@ -1,6 +1,6 @@
-package common;
+package com.fintechservices.financemanager.common;
 
-import models.Ticker;
+import com.fintechservices.financemanager.models.Ticker;
 import org.apache.commons.math3.linear.RealMatrix;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package models;
+package com.fintechservices.financemanager.models;
 
 import java.util.Map;
 

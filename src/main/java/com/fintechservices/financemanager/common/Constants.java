@@ -1,4 +1,4 @@
-package common;
+package com.fintechservices.financemanager.common;
 
 public class Constants {
     public static final String WHERE = "query?";

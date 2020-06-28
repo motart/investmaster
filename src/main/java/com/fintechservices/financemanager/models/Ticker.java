@@ -1,8 +1,10 @@
-package models;
+package com.fintechservices.financemanager.models;
+
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import common.MathHelper;
+import com.fintechservices.financemanager.common.MathHelper;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static common.Constants.*;
+import static com.fintechservices.financemanager.common.Constants.*;
 
 public class Ticker {
     private String symbol;

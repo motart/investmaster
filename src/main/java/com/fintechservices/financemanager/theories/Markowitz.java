@@ -1,14 +1,15 @@
-package theories;
+package com.fintechservices.financemanager.theories;
 
-import common.InvestmentBase;
-import common.MathHelper;
-import common.TooFewStocksException;
-import models.Opportunity;
-import models.Ticker;
+import com.fintechservices.financemanager.common.InvestmentBase;
+import com.fintechservices.financemanager.common.TooFewStocksException;
+import com.fintechservices.financemanager.models.Opportunity;
+import com.fintechservices.financemanager.models.Ticker;
 import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealMatrix;
 import java.text.DecimalFormat;
 import java.util.*;
+
+import static com.fintechservices.financemanager.common.MathHelper.*;
 
 public class Markowitz extends InvestmentBase {
     private List<Opportunity> opportunitySet;
@@ -65,13 +66,13 @@ public class Markowitz extends InvestmentBase {
         for ( Map<String, Double> combination: weightCombinationsSet ) {
             Opportunity opportunity = new Opportunity();
             RealMatrix combinationMatrix = MatrixUtils.createRealMatrix(1, portfolio.size());
-            combinationMatrix.setRow( 0, MathHelper.convertMapToArray( combination ) );
+            combinationMatrix.setRow( 0, convertMapToArray( combination ) );
             RealMatrix portfolioReturnTempMatrix = combinationMatrix.multiply(averageMatrix.transpose());
             RealMatrix portfolioVarianceTempMatrix = combinationMatrix.multiply(covarianceMatrix).multiply(combinationMatrix.transpose());
             opportunity.weights = combination;
             opportunity.portfolioReturn = portfolioReturnTempMatrix.getEntry(0,0);
             opportunity.portfolioVariance = portfolioVarianceTempMatrix.getEntry(0, 0);
-            opportunity.portfolioStDeviation = MathHelper.calculateSquareRoot( opportunity.portfolioVariance );
+            opportunity.portfolioStDeviation = calculateSquareRoot( opportunity.portfolioVariance );
             opportunity.sharpeRatio = (opportunity.portfolioReturn - monthlyRiskFreeRate )/opportunity.portfolioStDeviation;
             result.add(opportunity);
         }
@@ -123,7 +124,7 @@ public class Markowitz extends InvestmentBase {
     }
 
     private RealMatrix calculateCovarianceMatrix( RealMatrix returnsMatrix ) {
-        return MathHelper.calculateCovariance( returnsMatrix );
+        return calculateCovariance( returnsMatrix );
     }
 
     /**
@@ -134,7 +135,7 @@ public class Markowitz extends InvestmentBase {
         int i = 0;
         RealMatrix result = null;
         for ( Ticker ticker: portfolio) {
-            double[] returns = MathHelper.convertTreeMapToArray(ticker.getReturnsMap());
+            double[] returns = convertTreeMapToArray(ticker.getReturnsMap());
             if ( result == null ) {
                 result = MatrixUtils.createRealMatrix( returns.length, this.portfolio.size() );
             }
