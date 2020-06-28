@@ -1,4 +1,4 @@
-package common;
+package com.fintechservices.financemanager.common;
 
 public enum Function {
     TIME_SERIES_INTRADAY,
