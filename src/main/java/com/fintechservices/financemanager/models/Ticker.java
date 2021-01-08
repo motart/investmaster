@@ -24,7 +24,7 @@ public class Ticker {
     private TreeMap<Date, Double> pricesMap;
     private TreeMap<Date, Double> returnsMap;
     private Date startDate = new GregorianCalendar(2019, Calendar.JULY, 01).getTime();;
-    private Date endDate = new GregorianCalendar(2020, Calendar.JULY, 01).getTime();;
+    private Date endDate = new GregorianCalendar(2020, Calendar.OCTOBER, 01).getTime();;
     // private Date endDate = new Date(System.currentTimeMillis());
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -43,7 +43,7 @@ public class Ticker {
 
     private String getData( String symbol ) throws IOException, InterruptedException {
             HttpResponse<String> response;
-            String path = "https://www.alphavantage.co/" + WHERE + FREQUENCY_IS + "TIME_SERIES_MONTHLY"
+            String path =  "https://www.alphavantage.co/" + WHERE + FREQUENCY_IS + "TIME_SERIES_MONTHLY"
                     + AND + TICKER_IS + symbol + AND + "apikey=CSZNI68WV3F09QQZ";
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()

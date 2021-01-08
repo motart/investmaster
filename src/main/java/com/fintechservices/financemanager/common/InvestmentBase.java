@@ -6,8 +6,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 import java.io.IOException;
 import java.text.ParseException;
 
-public abstract class InvestmentBase {
-    public abstract RealMatrix getData() throws IOException, ParseException;
-
-    public abstract InvestmentBase addTicker(Ticker ticker);
+public interface InvestmentBase {
+    RealMatrix getData() throws IOException, ParseException;
+    InvestmentBase addTicker(Ticker ticker);
 }

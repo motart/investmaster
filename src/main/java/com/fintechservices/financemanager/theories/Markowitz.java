@@ -11,7 +11,7 @@ import java.util.*;
 
 import static com.fintechservices.financemanager.common.MathHelper.*;
 
-public class Markowitz extends InvestmentBase {
+public class Markowitz implements InvestmentBase {
     private List<Opportunity> opportunitySet;
     private Set<Ticker> portfolio = new HashSet<>();
     private RealMatrix covarianceMatrix;
@@ -45,7 +45,7 @@ public class Markowitz extends InvestmentBase {
         Opportunity optimalReturnPortfolio = getMaxSharpe();
     }
 
-    private Opportunity getMaxSharpe() {
+    public Opportunity getMaxSharpe() {
         Opportunity result = new Opportunity();
         Double maxSharpe = 0.0;
         for ( Opportunity opportunity: opportunitySet ) {
@@ -172,5 +172,9 @@ public class Markowitz extends InvestmentBase {
         }
         this.portfolio.add( ticker );
         return this;
+    }
+
+    public List<Opportunity> getOpportunitySet() {
+        return opportunitySet;
     }
 }
