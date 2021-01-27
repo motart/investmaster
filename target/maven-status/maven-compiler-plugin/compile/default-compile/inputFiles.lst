@@ -1,0 +1,12 @@
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/common/MathHelper.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/theories/Markowitz.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/exceptions/ApiLimitReachedException.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/FinanceManagerApplication.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/common/Constants.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/common/Function.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/exceptions/DataSizeMismatchException.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/theories/CAPM.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/models/Opportunity.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/models/Ticker.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/common/InvestmentBase.java
+/Users/rachidabadli/workspace/investmaster/src/main/java/com/fintechservices/financemanager/exceptions/TooFewStocksException.java

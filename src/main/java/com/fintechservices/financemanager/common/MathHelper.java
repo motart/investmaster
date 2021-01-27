@@ -1,11 +1,13 @@
 package com.fintechservices.financemanager.common;
 
+import com.fintechservices.financemanager.exceptions.DataSizeMismatchException;
 import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.stat.correlation.Covariance;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,13 +15,13 @@ import java.util.TreeMap;
 public class MathHelper {
     static Covariance covariance = new Covariance();
     static StandardDeviation standardDeviation = new StandardDeviation();
-    public static Double calculateAverageReturn( TreeMap< Date, Double > returns ) {
+    public static Double calculateAverageReturn( TreeMap< LocalDate, Double > returns ) {
         double result;
         result = returns.values().stream().mapToDouble(num -> num).average().orElse(0);
         return result;
     }
 
-    public static Double calculateVariance( TreeMap<Date, Double> returns ) {
+    public static Double calculateVariance( TreeMap<LocalDate, Double> returns ) {
         double[] testData = convertTreeMapToArray( returns );
         for (int i=0; i < returns.size(); i++ ) {
             testData[i] = (double) returns.values().toArray()[i];
@@ -36,7 +38,7 @@ public class MathHelper {
         return result;
     }
 
-    public static double[] convertTreeMapToArray(TreeMap<Date, Double> source) {
+    public static double[] convertTreeMapToArray(TreeMap<LocalDate, Double> source) {
         double[] result = new double[source.size()];
         for (int i=0; i < source.size(); i++ ) {
             result[i] = (double) source.values().toArray()[i];
@@ -44,11 +46,11 @@ public class MathHelper {
         return result;
     }
 
-    public static TreeMap<Date, Double> calculateReturns( TreeMap<Date,Double> stockPrices ) {
+    public static TreeMap<LocalDate, Double> calculateReturns( TreeMap<LocalDate,Double> stockPrices ) {
         Double previousValue = null;
-        Date previousDate = null;
-        TreeMap<Date, Double> processedData = new TreeMap<>();
-        for ( Map.Entry<Date, Double> entry: stockPrices.entrySet() ) {
+        LocalDate previousDate = null;
+        TreeMap<LocalDate, Double> processedData = new TreeMap<>();
+        for ( Map.Entry<LocalDate, Double> entry: stockPrices.entrySet() ) {
             if ( previousValue == null ) {
                 previousDate = entry.getKey();
                 previousValue = entry.getValue();

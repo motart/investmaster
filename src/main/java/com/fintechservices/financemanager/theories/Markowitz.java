@@ -1,7 +1,7 @@
 package com.fintechservices.financemanager.theories;
 
 import com.fintechservices.financemanager.common.InvestmentBase;
-import com.fintechservices.financemanager.common.TooFewStocksException;
+import com.fintechservices.financemanager.exceptions.TooFewStocksException;
 import com.fintechservices.financemanager.models.Opportunity;
 import com.fintechservices.financemanager.models.Ticker;
 import org.apache.commons.math3.linear.MatrixUtils;
@@ -20,11 +20,6 @@ public class Markowitz implements InvestmentBase {
     private Map<Integer, String> stockIndexing;
     private static Double weightStep = 0.1;
     private static final Double monthlyRiskFreeRate = 0.00123;
-
-    public Markowitz( Ticker ticker) {
-        this.portfolio.add( ticker );
-    }
-
     public Set<Ticker> getPortfolio() {
         return portfolio;
     }

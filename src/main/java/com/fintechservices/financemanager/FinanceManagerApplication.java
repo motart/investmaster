@@ -1,15 +1,12 @@
 package com.fintechservices.financemanager;
 
-import com.fintechservices.financemanager.common.TooFewStocksException;
-import com.fintechservices.financemanager.models.Opportunity;
+import com.fintechservices.financemanager.exceptions.ApiLimitReachedException;
+import com.fintechservices.financemanager.exceptions.TooFewStocksException;
 import com.fintechservices.financemanager.models.Ticker;
 import com.fintechservices.financemanager.theories.Markowitz;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Iterator;
 
 @SpringBootApplication
 public class FinanceManagerApplication {
@@ -26,22 +23,35 @@ public class FinanceManagerApplication {
 		Ticker acuity = null;
 		Ticker fcel = null;
 		Ticker plug = null;
+		Ticker fdfix = null;
+		Ticker fibux = null;
+		Ticker fitfx = null;
+		Ticker flapx = null;
+		Ticker flxsx = null;
 
 		try {
-			fcel = new Ticker("FCEL");
-			apple = new Ticker("AAPL");
-			plug = new Ticker("PLUG");
-			// netflix = new Ticker("NFLX");
+//			fdfix = new Ticker("FDFIX");
+//			fibux = new Ticker("FIBUX");
+//			fitfx = new Ticker("FITFX");
+//			flapx = new Ticker("FLAPX");
+//			flxsx = new Ticker("FLXSX");
+
+			 fcel = new Ticker("FCEL");
+			 apple = new Ticker("AAPL");
+			 plug = new Ticker("PLUG");
+//			 palantir = new Ticker("PLTR");
+//			 accenture = new Ticker("ACN");
+//			 acuity = new Ticker("AYI");
+//			 amazon = new Ticker("AMZN");
+//			netflix = new Ticker("NFLX");
 			tesla = new Ticker("TSLA");
-			// palantir = new Ticker("PLTR");
-			accenture = new Ticker("ACN");
-			// acuity = new Ticker("AYI");
-		} catch (InterruptedException | IOException | ParseException e) {
+
+		} catch (InterruptedException | IOException | ParseException | ApiLimitReachedException e) {
 			e.printStackTrace();
 		}
 
-		Markowitz testRun = new Markowitz( plug );
-		testRun.addTicker(fcel);//.addTicker(apple).addTicker(tesla).addTicker(plug);
+		Markowitz testRun = new Markowitz( );
+		testRun.addTicker(apple).addTicker(fcel).addTicker(tesla).addTicker(plug);
 		testRun.run();
 		System.out.println(testRun.getMaxSharpe());
 	}
