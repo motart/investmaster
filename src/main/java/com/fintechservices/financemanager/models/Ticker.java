@@ -117,4 +117,55 @@ public class Ticker {
     public void setReturnsMap(TreeMap<LocalDate, Double> returnsMap) {
         this.returnsMap = returnsMap;
     }
+
+    public TreeMap<LocalDate, Double> getPricesMap() {
+        return pricesMap;
+    }
+
+    /**
+     * Check if the latest closing price is significantly below the moving
+     * average of recent prices.
+     *
+     * @param lookbackDays number of historical days to consider
+     * @param threshold    how many standard deviations below the average
+     *                     the price must be to be considered a dip
+     * @return true if the stock is in a dip
+     */
+    public boolean isInDip(int lookbackDays, double threshold) {
+        if (pricesMap == null || pricesMap.isEmpty()) {
+            return false;
+        }
+
+        List<Double> recentPrices = new ArrayList<>();
+        int count = 0;
+        for (Double price : pricesMap.descendingMap().values()) {
+            recentPrices.add(price);
+            if (++count >= lookbackDays) {
+                break;
+            }
+        }
+
+        if (recentPrices.size() < 2) {
+            return false;
+        }
+
+        double sum = 0.0;
+        for (Double p : recentPrices) {
+            sum += p;
+        }
+        double mean = sum / recentPrices.size();
+
+        double varianceTemp = 0.0;
+        for (Double p : recentPrices) {
+            varianceTemp += Math.pow(p - mean, 2);
+        }
+        double stDev = Math.sqrt(varianceTemp / recentPrices.size());
+
+        double latestPrice = recentPrices.get(0);
+        return latestPrice < (mean - threshold * stDev);
+    }
+
+    public boolean isInDip() {
+        return isInDip(50, 1.0);
+    }
 }
