@@ -44,11 +44,18 @@ public class FinanceManagerApplication {
 //			 acuity = new Ticker("AYI");
 //			 amazon = new Ticker("AMZN");
 //			netflix = new Ticker("NFLX");
-			tesla = new Ticker("TSLA");
+                        tesla = new Ticker("TSLA");
 
-		} catch (InterruptedException | IOException | ParseException | ApiLimitReachedException e) {
-			e.printStackTrace();
-		}
+                } catch (InterruptedException | IOException | ParseException | ApiLimitReachedException e) {
+                        e.printStackTrace();
+                }
+
+                if (apple != null) {
+                        System.out.println("AAPL dip? " + apple.isInDip());
+                }
+                if (tesla != null) {
+                        System.out.println("TSLA dip? " + tesla.isInDip());
+                }
 
 		Markowitz testRun = new Markowitz( );
 		testRun.addTicker(apple).addTicker(fcel).addTicker(tesla).addTicker(plug);
